@@ -50,8 +50,8 @@ class SwapiApi extends ApiClass {
             id: this._extractId(person.url),
             name: person.name,
             gender: person.gender,
-            birthYear: person.birthYear,
-            eyeColor: person.eyeColor
+            birthYear: person.birth_year,
+            eyeColor: person.eye_color
         }
     }
 

@@ -3,46 +3,43 @@ import ItemList from "../ItemList";
 import PersonDetails from "../PersonDetails";
 import ErrorPlug from "../ErrorPlug";
 import Swapi from "../Api/Swapi";
+import Row from '../Row/'
+import ErrorBoundary from '../ErrorBoundary'
 
 export default class PeoplePage extends Component {
     SwapiService = Swapi
 
     state = {
         selectedPerson: 5,
-        hasError: false
     }
     onPersonSelected = (selectedPerson) => {
         this.setState({
             selectedPerson
         })
     }
-
-    componentDidCatch(error, errorInfo) {
-        this.setState({
-            hasError: true
-        })
-    }
-
     render () {
+        const itemList = (
+        <ItemList
+            onItemSelected={this.onPersonSelected}
+            getData={this.SwapiService.getAllPeople}
+        >
+            {
+                ({name, gender, birthYear}) => `${name} (${gender} ${birthYear })}`
+            }
+        </ItemList>
+        )
 
-        if (this.state.hasError) {
-            return <ErrorPlug />
-        }
+        const personDetails = (<PersonDetails
+            personId={this.state.selectedPerson}
+        />)
         
         return (
-            <div className="d-flex">
-                <div className="col-md-6">
-                    <ItemList
-                        onItemSelected={this.onPersonSelected}
-                        getData={this.SwapiService.getAllPeople}
-                    />
-                </div>
-                <div className="col-md-6">
-                    <PersonDetails
-                        personId={this.state.selectedPerson}
-                    />
-                </div>
-            </div>
+            <ErrorBoundary>
+                <Row
+                    left={itemList}
+                    right={personDetails}
+                />
+            </ErrorBoundary>
         )
     }
 }

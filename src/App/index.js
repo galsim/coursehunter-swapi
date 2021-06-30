@@ -1,9 +1,7 @@
 import {Component} from "react";
 import RandomPlanet from "../RandomPlanet";
-import PeoplePage from "../PeoplePage";
 import ItemList from "../ItemList";
 import ItemDetails, {Record} from '../ItemDetails'
-import PersonDetails from "../ItemDetails";
 import Swapi from "../Api/Swapi";
 import Row from "../Row";
 
@@ -34,7 +32,11 @@ export default class App extends Component {
                 itemId={5}
                 getData={getStarship}
                 getImageUrl={getStarshipImage}
-            />
+            >
+                <Record field="model" label="Model" />
+                <Record field="length" label="Length" />
+                <Record field="costInCredits" label="Cost" />
+            </ItemDetails>
         )
         return (
             <div className="bg-dark pb-5">

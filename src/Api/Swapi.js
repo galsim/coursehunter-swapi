@@ -79,7 +79,7 @@ class SwapiApi extends ApiClass {
             name: starship.name,
             model: starship.model,
             manufacturer: starship.manufacturer,
-            constInCredits: starship.constInCredits,
+            costInCredits: starship.cost_in_credits,
             length: starship.length,
             crew: starship.crew,
             passengers: starship.passengers,

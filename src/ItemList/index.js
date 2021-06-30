@@ -1,56 +1,35 @@
 import {Component} from "react";
 import Loader from "../Loader";
+import Swapi from '../Api/Swapi'
 
-export default class ItemList extends Component {
+ function ItemList (props) {
+     console.log(props)
+    const {itemList, renderItem, onItemSelected} = props
+    const items = itemList.map((item) => {
+        const id = item.id
 
-    state = {
-        itemList: null
-    }
-
-    onListLoad = (itemList) => {
-        this.setState({
-            itemList
-        })
-    }
-
-    componentDidMount() {
-        const {getData} = this.props
-        getData()
-            .then(this.onListLoad)
-    }
-
-    renderItems(arr) {
-        return arr.map((item) => {
-            const id = item.id
-
-            const label = this.props.renderItem(item)
-
-            return (
-                <li
-                    className="list-group-item"
-                    key={id}
-                    onClick={() => this.props.onItemSelected(id)}
-                >
-                    {label}
-                </li>
-            )
-        })
-    }
-
-    render() {
-
-        const {itemList} = this.state
-
-        if (!itemList) {
-            return <Loader />
-        }
-
-        const items = this.renderItems(itemList)
+        const label = renderItem(item)
 
         return (
-            <ul className="item-list list-group mx-2">
-                {items}
-            </ul>
+            <li
+                className="list-group-item"
+                key={id}
+                onClick={() => onItemSelected(id)}
+            >
+                {label}
+            </li>
         )
-    }
+    })
+
+    return (
+        <ul className="item-list list-group mx-2">
+            {items}
+        </ul>
+    )
 }
+
+
+
+const {getAllPeople} = Swapi
+
+export default withData(ItemList, getAllPeople)

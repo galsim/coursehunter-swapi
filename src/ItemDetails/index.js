@@ -1,11 +1,11 @@
-import {Component} from "react";
+import React, {Component} from "react";
 import Loader from "../Loader";
 
-const Record = ({field, label}) => {
+const Record = ({item, field, label}) => {
     return (
         <li className="list-group-item d-flex justify-content-between">
             <span className="term">{label}</span>
-            <span>{field}</span>
+            <span>{item[field]}</span>
         </li>
     )
 }
@@ -71,7 +71,7 @@ export default class itemDetails extends Component {
             return <span>Select person from list</span>
         }
 
-        const { item: { name, gender, birthYear, eyeColor}, image } = this.state
+        const { item: { name, gender, birthYear, eyeColor}, image, item } = this.state
 
         return (
             <div className="mx-2 card d-flex flex-row">
@@ -86,7 +86,7 @@ export default class itemDetails extends Component {
                     <ul className="list-group-list-group-flash">
                         {
                             React.Children.map(this.props.children, (child) => {
-                                return child
+                                return React.cloneElement(child, { item })
                             })
                         }
                     </ul>

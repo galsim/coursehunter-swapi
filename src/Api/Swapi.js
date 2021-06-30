@@ -3,6 +3,12 @@ import ApiClass from "./index";
 class SwapiApi extends ApiClass {
     constructor() {
         super('https://swapi.dev/api/');
+
+        this._imageBaseUrl = 'https://starwars-visualguide.com/assets/img'
+    }
+
+    get imageBaseUrl() {
+        return this._imageBaseUrl
     }
 
     getAllPeople = async () => {
@@ -15,6 +21,10 @@ class SwapiApi extends ApiClass {
         return this._transformPerson(res)
     }
 
+    getPersonImage = ({id}) => {
+        return `${this.imageBaseUrl}/characters/${id}.jpg`
+    }
+
     getPlanet = async (id) => {
         const res = await this.getResponse(`planets/${id}`)
         return this._transformPlanet(res)
@@ -25,6 +35,10 @@ class SwapiApi extends ApiClass {
         return res.results.map(this._transformPlanet)
     }
 
+    getPlanetImage = ({id}) => {
+        return `${this.imageBaseUrl}/planets/${id}.jpg`
+    }
+
     getStarship = async (id) => {
         const res = await this.getResponse(`starships/${id}`)
         return this._transformStarship(res)
@@ -33,6 +47,10 @@ class SwapiApi extends ApiClass {
     getAllStarship = async () => {
         const res =  await this.getResponse(`starships/`)
         return res.results.map(this._transformStarship)
+    }
+
+    getStarshipImage = ({id}) => {
+        return `${this.imageBaseUrl}/starships/${id}.jpg`
     }
 
     _transformPlanet = (planet) => {
@@ -50,8 +68,8 @@ class SwapiApi extends ApiClass {
             id: this._extractId(person.url),
             name: person.name,
             gender: person.gender,
-            birthYear: person.birthYear,
-            eyeColor: person.eyeColor
+            birthYear: person.birth_year,
+            eyeColor: person.eye_color
         }
     }
 

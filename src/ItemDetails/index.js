@@ -71,7 +71,7 @@ export default class itemDetails extends Component {
             return <span>Select person from list</span>
         }
 
-        const { item: { name, gender, birthYear, eyeColor}, image, item } = this.state
+        const { item: { name}, image, item } = this.state
 
         return (
             <div className="mx-2 card d-flex flex-row">
@@ -86,6 +86,7 @@ export default class itemDetails extends Component {
                     <ul className="list-group-list-group-flash">
                         {
                             React.Children.map(this.props.children, (child) => {
+                                console.log(item)
                                 return React.cloneElement(child, { item })
                             })
                         }

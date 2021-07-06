@@ -1,10 +1,7 @@
-import {Component} from "react";
-import Loader from "../Loader";
-import Swapi from '../Api/Swapi'
+import React from "react";
 
- function ItemList (props) {
-     console.log(props)
-    const {itemList, renderItem, onItemSelected} = props
+export default function ItemList (props) {
+    const {itemList, children: renderItem, onItemSelected} = props
     const items = itemList.map((item) => {
         const id = item.id
 
@@ -27,9 +24,3 @@ import Swapi from '../Api/Swapi'
         </ul>
     )
 }
-
-
-
-const {getAllPeople} = Swapi
-
-export default withData(ItemList, getAllPeople)

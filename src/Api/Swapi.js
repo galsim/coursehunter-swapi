@@ -1,6 +1,6 @@
 import ApiClass from "./index";
 
-class SwapiApi extends ApiClass {
+class SwapiServices extends ApiClass {
     constructor() {
         super('https://swapi.dev/api/');
 
@@ -93,6 +93,4 @@ class SwapiApi extends ApiClass {
     }
 }
 
-const Swapi = new SwapiApi()
-
-export default Swapi
+export default SwapiServices

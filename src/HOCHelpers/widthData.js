@@ -1,7 +1,7 @@
 import Loader from "../Loader";
 import {Component} from "react";
 
-const withData = (View, getData) => {
+const withData = (View) => {
     return class extends Component {
         state = {
             itemList: null
@@ -14,7 +14,7 @@ const withData = (View, getData) => {
         }
 
         componentDidMount() {
-            getData()
+            this.props.getData()
                 .then(this.onListLoad)
         }
 

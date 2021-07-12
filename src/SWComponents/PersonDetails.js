@@ -1,19 +1,18 @@
 import ItemDetails, {Record} from "../ItemDetails";
 import React from "react";
 import {withSwapiService} from '../HOCHelpers/'
-
-const PersonDetails = ({itemId, swapiService}) => {
-    const {getPerson, getPersonImage} = swapiService
+const PersonDetails = (props) => {
     return (
-        <ItemDetails
-            itemId={itemId}
-            getData={getPerson}
-            getImageUrl={getPersonImage}
-        >
+        <ItemDetails {...props}>
             <Record field='gender' label='Gender' />
             <Record field='eyeColor' label='Eye color' />
         </ItemDetails>
     )
 }
 
-export default withSwapiService(PersonDetails)
+const mapMethodsToProps = (swapiService) => ({
+    getData: swapiService.getPerson,
+    getImageUrl: swapiService.getPersonImage
+})
+
+export default withSwapiService(PersonDetails, mapMethodsToProps)

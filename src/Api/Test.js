@@ -1,12 +1,11 @@
 import ApiClass from "./index";
 
-class SwapiServices extends ApiClass {
+class TestServices extends ApiClass {
     constructor() {
         super('https://swapi.dev/api/');
 
         this._imageBaseUrl = 'https://starwars-visualguide.com/assets/img'
-
-        this._name = 'SwapiServices'
+        this._name = 'TestServices'
     }
 
     get name() {
@@ -99,4 +98,4 @@ class SwapiServices extends ApiClass {
     }
 }
 
-export default SwapiServices
+export default TestServices

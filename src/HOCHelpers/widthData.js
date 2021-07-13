@@ -7,15 +7,25 @@ const withData = (View) => {
             itemList: null
         }
 
+        update = () => {
+            this.props.getData()
+                .then(this.onListLoad)
+        }
+
         onListLoad = (itemList) => {
             this.setState({
                 itemList
             })
         }
 
+        componentDidUpdate(prevProps) {
+            if (this.props.getData !== prevProps.getData) {
+                this.update()
+            }
+        }
+
         componentDidMount() {
-            this.props.getData()
-                .then(this.onListLoad)
+            this.update()
         }
 
         render() {

@@ -1,15 +1,23 @@
 import Loader from "../Loader";
 import {Component} from "react";
+import ErrorPlug from "../ErrorPlug";
 
 const withData = (View) => {
     return class extends Component {
         state = {
-            itemList: null
+            itemList: null,
+            loading: true,
+            error: false
         }
 
-        update = () => {
-            this.props.getData()
+        update = async () => {
+            this.setState({loading: true})
+
+            await this.props.getData()
                 .then(this.onListLoad)
+                .catch(() => this.setState({error: true}))
+
+            this.setState({loading: false})
         }
 
         onListLoad = (itemList) => {
@@ -29,10 +37,14 @@ const withData = (View) => {
         }
 
         render() {
-            const {itemList} = this.state
+            const {itemList, loading, error} = this.state
 
-            if (!itemList) {
+            if (loading) {
                 return <Loader />
+            }
+
+            if (error) {
+                return <ErrorPlug />
             }
 
             return <View {...this.props} itemList={itemList} />

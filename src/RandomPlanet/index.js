@@ -5,6 +5,7 @@ import Swapi from "../Api/Swapi";
 
 export default class RandomPlanet extends Component {
     interval = null
+    Swapi = new Swapi()
 
     componentDidMount() {
         this.updatePlanet()
@@ -23,7 +24,7 @@ export default class RandomPlanet extends Component {
 
     updatePlanet = () => {
         const id = Math.floor(Math.random() * 25 + 3)
-        Swapi
+        this.Swapi
             .getPlanet(id)
             .then(this.onPlanetLoaded)
             .catch(this.onError)

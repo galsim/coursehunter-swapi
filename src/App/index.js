@@ -1,7 +1,8 @@
 import {Component} from "react";
 import ErrorBoundary from "../ErrorBoundary";
-import {PersonDetails, PersonList, PlanetDetails, PlanetList, StarshipDetails, StarshipList} from "../SWComponents";
+import {PeoplePage, StarshipPage, PlanetPage} from '../pages'
 import Header from '../Header/'
+import RandomPlanet from "../RandomPlanet";
 
 import SwapiServices from "../Api/Swapi";
 import TestServices from "../Api/Test";
@@ -17,8 +18,6 @@ export default class App extends Component {
        this.setState(({swapiServices}) => {
            const Service = swapiServices instanceof SwapiServices ? TestServices : SwapiServices
 
-           console.log('switched to ' + Service.name)
-
            return {
                swapiServices: new Service()
            }
@@ -33,19 +32,14 @@ export default class App extends Component {
                         <Header
                             onServiceChange={this.onServiceChange}
                         />
-                        <PersonDetails
-                            itemId={11}
-                        />
-                        <StarshipDetails
-                            itemId={5}
-                        />
-                        <PlanetDetails
-                            itemId={2}
-                        />
 
-                        <PersonList />
-                        <StarshipList />
-                        <PlanetList />
+                        <RandomPlanet />
+
+                        <PeoplePage />
+
+                        <StarshipPage />
+
+                        <PlanetPage />
                     </div>
                 </SwapiServiceProvider>
             </ErrorBoundary>

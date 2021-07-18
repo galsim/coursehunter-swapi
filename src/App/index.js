@@ -28,7 +28,7 @@ export default class App extends Component {
         return (
             <ErrorBoundary>
                 <SwapiServiceProvider value={this.state.swapiServices}>
-                    <div className="bg-dark pb-5">
+                    <div className="bg-dark pb-5 px-3">
                         <Header
                             onServiceChange={this.onServiceChange}
                         />

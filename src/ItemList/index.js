@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ItemList (props) {
+ function ItemList (props) {
     const {itemList, children: renderItem, onItemSelected} = props
     const items = itemList.map((item) => {
         const id = item.id
@@ -24,3 +24,9 @@ export default function ItemList (props) {
         </ul>
     )
 }
+
+ItemList.defaultProps = {
+     onItemSelected: () => {}
+}
+
+export default ItemList

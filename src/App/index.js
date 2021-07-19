@@ -33,7 +33,9 @@ export default class App extends Component {
                             onServiceChange={this.onServiceChange}
                         />
 
-                        <RandomPlanet />
+                        <RandomPlanet
+                            updateInterval={2500}
+                        />
 
                         <PeoplePage />
 

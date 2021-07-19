@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Loader from '../Loader/'
 import ErrorPlug from "../ErrorPlug";
 import Swapi from "../Api/Swapi";
+import PropTypes from 'prop-types'
 
 export default class RandomPlanet extends Component {
 
@@ -10,15 +11,7 @@ export default class RandomPlanet extends Component {
     }
 
     static propsTypes = {
-        updateInterval: (props, propName, componentName) => {
-            const value = props[propName]
-
-            if (typeof value === 'number' && !isNaN(value)) {
-                return null
-            }
-
-            return new TypeError(`In ${componentName} error, ${propName} must be a number`)
-        }
+        updateInterval: PropTypes.number
     }
 
     interval = null

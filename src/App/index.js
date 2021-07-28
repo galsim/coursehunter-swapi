@@ -9,6 +9,8 @@ import TestServices from "../Api/Test";
 
 import {SwapiServiceProvider} from "../SwapiServiceContext";
 
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 export default class App extends Component {
     state = {
         swapiServices: new SwapiServices()
@@ -28,21 +30,23 @@ export default class App extends Component {
         return (
             <ErrorBoundary>
                 <SwapiServiceProvider value={this.state.swapiServices}>
-                    <div className="bg-dark pb-5 px-3">
-                        <Header
-                            onServiceChange={this.onServiceChange}
-                        />
+                    <Router>
+                        <div className="bg-dark pb-5 px-3">
+                            <Header
+                                onServiceChange={this.onServiceChange}
+                            />
 
-                        <RandomPlanet
-                            updateInterval={2500}
-                        />
+                            <RandomPlanet
+                                updateInterval={2500}
+                            />
 
-                        <PeoplePage />
+                            <Route path="/" exact render={() => <h2 className="text-white">Hello, world!</h2>} />
+                            <Route path='/people' component={PeoplePage} />
+                            <Route path='/planets' component={PlanetPage} />
+                            <Route path='/starship' component={StarshipPage} />
 
-                        <StarshipPage />
-
-                        <PlanetPage />
-                    </div>
+                        </div>
+                    </Router>
                 </SwapiServiceProvider>
             </ErrorBoundary>
         )

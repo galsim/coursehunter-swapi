@@ -1,6 +1,7 @@
 import ItemDetails, {Record} from "../ItemDetails";
 import React from "react";
 import {withSwapiService} from "../HOCHelpers";
+import ErrorBoundary from "../ErrorBoundary";
 
 const StarshipDetails = (props) => {
     return (

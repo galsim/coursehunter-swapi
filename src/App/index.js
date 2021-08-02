@@ -10,6 +10,7 @@ import TestServices from "../Api/Test";
 import {SwapiServiceProvider} from "../SwapiServiceContext";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import StarshipDetails from "../SWComponents/StarshipDetails";
 
 export default class App extends Component {
     state = {
@@ -43,7 +44,15 @@ export default class App extends Component {
                             <Route path="/" exact render={() => <h2 className="text-white">Hello, world!</h2>} />
                             <Route path='/people' component={PeoplePage} />
                             <Route path='/planets' component={PlanetPage} />
-                            <Route path='/starship' component={StarshipPage} />
+                            <Route
+                                path='/starship'
+                                exact
+                                component={StarshipPage}
+                            />
+                            <Route
+                                path='/starship/:id'
+                                render={({match}) => <StarshipDetails itemId={+match.params.id} />}
+                            />
 
                         </div>
                     </Router>

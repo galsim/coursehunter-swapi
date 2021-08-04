@@ -42,10 +42,10 @@ export default class App extends Component {
                             />
 
                             <Route path="/" exact render={() => <h2 className="text-white">Hello, world!</h2>} />
-                            <Route path='/people' component={PeoplePage} />
-                            <Route path='/planets' component={PlanetPage} />
+                            <Route path='/people/:id?' component={PeoplePage} />
+                            <Route path='/planets/:id?' component={PlanetPage} />
                             <Route
-                                path='/starship'
+                                path='/starship/'
                                 exact
                                 component={StarshipPage}
                             />

@@ -13,7 +13,7 @@ export default class Header extends Component{
                         Home
                     </button>
                 </Link>
-                <Link to='/people'>
+                <Link to='/people/'>
                     <button
                         className="btn btn-outline btn-sm text-white"
                     >
@@ -21,7 +21,7 @@ export default class Header extends Component{
                     </button>
                 </Link>
 
-                <Link to='/starship'>
+                <Link to='/starship/'>
                     <button
                         className="btn btn-outline btn-sm text-white"
                     >
@@ -29,7 +29,7 @@ export default class Header extends Component{
                     </button>
                 </Link>
 
-                <Link to='/planets'>
+                <Link to='/planets/'>
                     <button
                         className="btn btn-outline btn-sm text-white"
                     >

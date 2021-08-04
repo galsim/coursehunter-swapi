@@ -37,6 +37,22 @@ export default class Header extends Component{
                     </button>
                 </Link>
 
+                <Link to='/login/'>
+                    <button
+                        className="btn btn-outline btn-sm text-white"
+                    >
+                        Login
+                    </button>
+                </Link>
+
+                <Link to='/secret/'>
+                    <button
+                        className="btn btn-outline btn-sm text-white"
+                    >
+                        Secret
+                    </button>
+                </Link>
+
                 <button
                     className="btn btn-primary btn-sm text-white"
                     onClick={onServiceChange}

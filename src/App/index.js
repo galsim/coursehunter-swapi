@@ -1,6 +1,12 @@
 import {Component} from "react";
 import ErrorBoundary from "../ErrorBoundary";
-import {PeoplePage, StarshipPage, PlanetPage} from '../pages'
+import {
+    PeoplePage,
+    StarshipPage,
+    PlanetPage,
+    SecretPage,
+    LoginPage
+} from '../pages'
 import Header from '../Header/'
 import RandomPlanet from "../RandomPlanet";
 
@@ -14,12 +20,15 @@ import StarshipDetails from "../SWComponents/StarshipDetails";
 
 export default class App extends Component {
     state = {
-        swapiServices: new SwapiServices()
+        swapiServices: new SwapiServices(),
+        isLoggedIn: false
     }
 
     onServiceChange = () => {
        this.setState(({swapiServices}) => {
-           const Service = swapiServices instanceof SwapiServices ? TestServices : SwapiServices
+           const Service = swapiServices instanceof SwapiServices
+               ? TestServices
+               : SwapiServices
 
            return {
                swapiServices: new Service()
@@ -27,7 +36,14 @@ export default class App extends Component {
        })
     }
 
+    onLogin = () => {
+        this.setState({
+            isLoggedIn: true
+        })
+    }
+
     render () {
+        const {isLoggedIn} = this.state
         return (
             <ErrorBoundary>
                 <SwapiServiceProvider value={this.state.swapiServices}>
@@ -41,7 +57,12 @@ export default class App extends Component {
                                 updateInterval={2500}
                             />
 
-                            <Route path="/" exact render={() => <h2 className="text-white">Hello, world!</h2>} />
+                            <Route
+                                path="/"
+                                exact
+                                render={() => {
+                                    return (<h2 className="text-white">Hello, world!</h2>)
+                                }} />
                             <Route path='/people/:id?' component={PeoplePage} />
                             <Route path='/planets/:id?' component={PlanetPage} />
                             <Route
@@ -54,6 +75,14 @@ export default class App extends Component {
                                 render={({match}) => <StarshipDetails itemId={+match.params.id} />}
                             />
 
+                            <Route
+                                path='/login'
+                                render={() => <LoginPage isLoggedIn={isLoggedIn} onLogin={this.onLogin}/>}
+                            />
+                            <Route
+                                path='/secret'
+                                render={() => <SecretPage isLoggedIn={isLoggedIn}  />}
+                            />
                         </div>
                     </Router>
                 </SwapiServiceProvider>
